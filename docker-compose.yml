@@ -1,4 +1,5 @@
 version: '3'
+
 services:
 
   mariadb:
@@ -27,27 +28,6 @@ services:
       - ./postgres-data:/var/lib/postgresql/data  
 
 
-  # mariadb-iw:
-  #   container_name: mariadb-iw
-  #   image: 'docker.io/bitnami/mariadb:10.3-debian-10'
-  #   restart: always
-  #   network_mode: host
-  #   environment:
-  #     - MARIADB_USER=iwcare
-  #     - MARIADB_DATABASE=iw
-  #     - ALLOW_EMPTY_PASSWORD=yes
-  #   volumes:
-  #     - ./mariadb-iw-data:/bitnami
-  #   # ports:
-  #   #   - 34006:3306
-
-#  adminer:
-#    container_name: adminer
-#    image: adminer:latest
-#    restart: always
-#    ports:
-#      - 8080:8080
-
   mongodb:
     container_name: mongodb
     image: mongo:4.4
@@ -61,38 +41,11 @@ services:
     volumes:
       - ./mongodb-data:/data/db
 
-# mongo-express from dockerhub docs
-#  mongo-express:
-#    container_name: mongodb-express
-#    image: mongo-express
-#    restart: always
-#    ports:
-#      - 8081:8081
-#    environment:
-#      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-#      ME_CONFIG_MONGODB_ADMINPASSWORD: iwcare@1
-
-# mongo express from imersao-fullcycle course
-  # mongo-express:
-  #   container_name: mongo-express
-  #   image: mongo-express
-  #   restart: always
-  #   ports: 
-  #     - 8081:8081
-  #   environment: 
-  #     - ME_CONFIG_MONGODB_SERVER=mongodb
-  #     - ME_CONFIG_MONGODB_AUTH_USERNAME=root
-  #     - ME_CONFIG_MONGODB_AUTH_PASSWORD=root
-  #     - ME_CONFIG_MONGODB_ADMINUSERNAME=root
-  #     - ME_CONFIG_MONGODB_ADMINPASSWORD=root  
-  #   depends_on:
-  #     - db 
 
   jasper-server:
     container_name: jasper-server
     image: 'docker.io/bitnami/jasperreports:7-debian-10'
     restart: always
-    # network_mode: host
     environment:
       - MARIADB_HOST=mariadb
       - MARIADB_PORT_NUMBER=3306
@@ -130,6 +83,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./portainer-data:/data
 
+
   iw-simple-db-mirror:
     container_name: simple-database-mirror
     #image: ghcr.io/oracle/oraclelinux7-golang:1.13
@@ -142,6 +96,58 @@ services:
       - "host.docker.internal:172.17.0.1"  
 
 
+###############################################################################      
+
+# Expirements...
+
+  # mariadb-iw:
+  #   container_name: mariadb-iw
+  #   image: 'docker.io/bitnami/mariadb:10.3-debian-10'
+  #   restart: always
+  #   network_mode: host
+  #   environment:
+  #     - MARIADB_USER=iwcare
+  #     - MARIADB_DATABASE=iw
+  #     - ALLOW_EMPTY_PASSWORD=yes
+  #   volumes:
+  #     - ./mariadb-iw-data:/bitnami
+  #   # ports:
+  #   #   - 34006:3306
+
+#  adminer:
+#    container_name: adminer
+#    image: adminer:latest
+#    restart: always
+#    ports:
+#      - 8080:8080
+
+
+# mongo-express from dockerhub docs
+#  mongo-express:
+#    container_name: mongodb-express
+#    image: mongo-express
+#    restart: always
+#    ports:
+#      - 8081:8081
+#    environment:
+#      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+#      ME_CONFIG_MONGODB_ADMINPASSWORD: iwcare@1
+
+# mongo express from imersao-fullcycle course
+  # mongo-express:
+  #   container_name: mongo-express
+  #   image: mongo-express
+  #   restart: always
+  #   ports: 
+  #     - 8081:8081
+  #   environment: 
+  #     - ME_CONFIG_MONGODB_SERVER=mongodb
+  #     - ME_CONFIG_MONGODB_AUTH_USERNAME=root
+  #     - ME_CONFIG_MONGODB_AUTH_PASSWORD=root
+  #     - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+  #     - ME_CONFIG_MONGODB_ADMINPASSWORD=root  
+  #   depends_on:
+  #     - db 
 
 #volumes:
 #  mariadb_data:
