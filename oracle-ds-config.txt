@@ -1,0 +1,26 @@
+JDBC Driver:
+
+Oracle (oracle.jdbc.OracleDriver)
+ 
+Select Driver...
+Host (required):
+172.17.0.1
+Port (required):
+1521
+Service (required):
+XE
+URL (required):
+jdbc:oracle:thin:@172.17.0.1:1521:XE
+Hint: jdbc:postgresql://localhost:5432/mydb
+User Name:
+system
+Password:
+•••••••••••••
+mypass
+
+Time Zone:
+
+Use database setting
+Hint: Do not change the time zone setting unless you know the database timestamp data is incorrect.
+
+
